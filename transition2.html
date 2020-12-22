@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href='../packages/core/main.css' rel='stylesheet' />
+<link href='../packages/list/main.css' rel='stylesheet' />
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src='../packages/core/main.js'></script>
+<script src='../packages/list/main.js'></script>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'list' ],
+
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'listDay,listWeek,dayGridMonth'
+      },
+
+      // customize the button names,
+      // otherwise they'd all just say "list"
+      views: {
+        listDay: { buttonText: 'list day' },
+        listWeek: { buttonText: 'list week' }
+      },
+
+      defaultView: 'listWeek',
+      //defaultDate: '2020-02-12',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+      {
+          title: 'WP TermProject',
+          start: '2020-12-22',
+          className: ["event", "Termproject"]
+        },
+        {
+          title: 'Big Data Term',
+          start: '2020-12-23',
+          end: '2020-12-23',
+          className: ["event", "Termproject"]
+        },
+        {
+          title: 'My Birthday',
+          start: '2020-01-06',
+          className: ["event", "personal"]
+        },
+        {
+          title: 'Meeting',
+          start: '2020-12-01',
+          className: ["event", "personal"]
+        },
+        {
+          title: 'Data Final',
+          start: '2020-12-08',
+          className: ["event", "finaltest"]
+        },
+        {
+          title: 'Write Final',
+          start: '2020-12-09',
+          className: ["event", "finaltest"]
+        },
+        {
+          title: 'Digital Final',
+          start: '2020-12-09',
+          className: ["event", "finaltest"]
+        },
+        {
+          title: 'Algorithm Final',
+          start: '2020-12-10',
+          className: ["event", "finaltest"]
+        },
+        {
+          title: 'Big Data Final',
+          start: '2020-12-10',
+          className: ["event", "finaltest"]
+        }
+      ]
+    });
+
+    calendar.render();
+  });
+
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Turret+Road:wght@800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Nova+Flat&display=swap');
+
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 80px;
+    font-family: 'Nova Flat', cursive;
+  }
+  
+  .personal{
+    background-color: #ffbb00 !important;
+  }
+  .finaltest{
+    background-color: #ff0000 !important;
+  }
+
+</style>
+</head>
+<body>
+  <header>
+    <button id="menu-buttons">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </button>
+    <h1 style="font-family: 'Turret Road', cursive;"><a href="./index.html">For My Day</a></h1>
+    </header>
+    <nav id="side-menu" class="hidden">
+        <ul>
+            <li><a href="./index.html">Main</a></li>
+            <li><a href="./transition2.html">Todo List</a></li>
+            
+        </ul>
+      </nav>
+
+  <div id='calendar'></div>
+  <script>
+    let hidden = true;
+    const menuButton = document.getElementById('menu-buttons');
+    const sideMenu = document.getElementById('side-menu');
+
+    menuButton.addEventListener('click', () => {
+      if (hidden) {
+        sideMenu.classList.remove('hidden');
+        hidden = false;
+      } else {
+        sideMenu.classList.add('hidden');
+        hidden = false;
+      }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href='../packages/core/main.css' rel='stylesheet' />
+<link href='../packages/daygrid/main.css' rel='stylesheet' />
+<link href='../packages/list/main.css' rel='stylesheet' />
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="css/bootstrap-grid.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<script src='../packages/core/main.js'></script>
+<script src='../packages/interaction/main.js'></script>
+<script src='../packages/daygrid/main.js'></script>
+<script src='../packages/list/main.js'></script>
+<script src="json/bootstrap.min.js"></script>
+
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid' ],
+      themeSystem:'Journal',
+      header:{
+        left: 'prev,next today,addEventButton',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      //defaultDate: '2020-02-12',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      customButtons: {
+        addEventButton: {
+            text: 'event+',
+            click: function() {
+            var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+            var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+            
+
+            if (!isNaN(date.valueOf())) { // valid?
+                calendar.addEvent({
+                title: 'new event',
+                start: date,
+                allDay: true
+                });
+                alert('Great. Now, update your database...');
+            } else {
+                alert('Invalid date.');
+            }
+            }
+        }
+        },
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+      {
+          title: 'WP TermProject',
+          start: '2020-12-22'
+        },
+        {
+          title: 'Big Data Term',
+          start: '2020-12-23',
+          end: '2020-12-23'
+        },
+        {
+          title: 'My Birthday',
+          start: '2020-01-06',
+          color:"FFBB00"
+        },
+        {
+          title: 'Meeting',
+          start: '2020-12-01',
+          color:"FFBB00"
+        },
+        {
+          title: 'Data Final',
+          start: '2020-12-08',
+          color:"FF0000"
+        },
+        {
+          title: 'Write Final',
+          start: '2020-12-09',
+          color:"FF0000"
+        },
+        {
+          title: 'Digital Final',
+          start: '2020-12-09',
+          backgroundcolor:"FF0000"
+        },
+        {
+          title: 'Algorithm Final',
+          start: '2020-12-10',
+          color:"FF0000"
+        },
+        {
+          title: 'Big Data Final',
+          start: '2020-12-10',
+          color:"FF0000"
+        }
+      ]
+    });
+
+    calendar.render();
+  });
+
+</script>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendarlist');
+
+    var calendarlist = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'list' ],
+
+      header: {
+        
+        
+        right: 'listDay,listWeek,dayGridMonth'
+      },
+
+      // customize the button names,
+      // otherwise they'd all just say "list"
+      views: {
+        listDay: { buttonText: 'list day' },
+        listWeek: { buttonText: 'list week' }
+      },
+
+      defaultView: 'listWeek',
+      //defaultDate: '2020-02-12',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+      {
+          title: 'WP TermProject',
+          start: '2020-12-22',
+          className: ["event", "Termproject"]
+        },
+        {
+          title: 'Big Data Term',
+          start: '2020-12-23',
+          end: '2020-12-23',
+          className: ["event", "Termproject"]
+        },
+        {
+          title: 'My Birthday',
+          start: '2020-01-06',
+          className: ["event", "personal"]
+        },
+        {
+          title: 'Meeting',
+          start: '2020-12-01',
+          className: ["event", "personal"]
+        },
+        {
+          title: 'Data Final',
+          start: '2020-12-08',
+          className: ["event", "finaltest"]
+        },
+        {
+          title: 'Write Final',
+          start: '2020-12-09',
+          className: ["event", "finaltest"]
+        },
+        {
+          title: 'Digital Final',
+          start: '2020-12-09',
+          className: ["event", "finaltest"]
+        },
+        {
+          title: 'Algorithm Final',
+          start: '2020-12-10',
+          className: ["event", "finaltest"]
+        },
+        {
+          title: 'Big Data Final',
+          start: '2020-12-10',
+          className: ["event", "finaltest"]
+        }
+      ]
+    });
+
+    calendarlist.render();
+  });
+
+</script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Turret+Road:wght@800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Nova+Flat&display=swap');
+  .personal{
+    background-color: #ffbb00 !important;
+  }
+  .finaltest{
+    background-color: #ff0000 !important;
+  }
+  
+
+</style>
+</head>
+<body>
+    <header>
+        <button id="menu-buttons">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+        <h1 style="font-family: 'Turret Road', cursive;"><a href="./index.html">For My Day</a></h1>
+    </header>
+    <nav id="side-menu" class="hidden">
+        <ul>
+            <li><a href="./index.html">Main</a></li>
+            <li><a href="./transition2.html">Todo List</a></li>
+            
+        </ul>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div id='calendar'></div>
+        </div>
+        <div class="col-md-4">
+          <div id='todo'>
+            <span>Todo List</span>
+            <div id='calendarlist'></div>
+            <div id=diary>
+              <button type="button" class="btn btn-outline-secondary btn-sm" style="margin-right:5px;" id="openModalBtn">+</button>
+              
+              <div id="modalBox" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">모달 타이틀</h4>
+                    </div>
+                    <div class="modal-body">
+                      내용
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary">확인</button>
+                      <button type="button" class="btn btn-default" id="closeModalBtn">취소</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                
+                
+              <span>My Diary</span>
+              <span id="date" style="font-size: 1rem;"></span>
+              <div class="textbox">Today is Web Programming Termproject</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    
+    <!--<footer id="footer">
+        <div class="Copyright">Copyright ⓒ Jang Seo Hyun</p>
+
+    </footer>-->
+    <script>
+        let hidden = true;
+        const menuButton = document.getElementById('menu-buttons');
+        const sideMenu = document.getElementById('side-menu');
+    
+        menuButton.addEventListener('click', () => {
+          if (hidden) {
+            sideMenu.classList.remove('hidden');
+            hidden = false;
+          } else {
+            sideMenu.classList.add('hidden');
+            hidden = false;
+          }
+        });
+    </script>
+    <script>
+      navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+      var constraints = { audio: false, video: true };
+
+      var video = document.getElementById("videoInput");
+
+      function successCallback(stream) {
+          video.srcObject = stream;
+          video.play();
+      }
+
+      function errorCallback(error) {
+          console.log(error);
+      }
+      navigator.getUserMedia(constraints, successCallback, errorCallback);
+  </script>
+  <script>
+    todayIs();
+ 
+    function todayIs() {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; // Jan is 0
+        var yyyy = today.getFullYear();
+
+        if(dd<10){
+            dd = '0'+dd
+        }
+        if(mm<10){
+            mm = '0'+mm
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+        //alert(today);
+        document.getElementById("date").innerHTML = today;
+        //$('#date').text(today);
+    } 
+
+  </script>
+  <script>
+    // 모달 버튼에 이벤트를 건다.
+    $('#openModalBtn').on('click', function(){
+    $('#modalBox').modal('show');
+    });
+    // 모달 안의 취소 버튼에 이벤트를 건다.
+    $('#closeModalBtn').on('click', function(){
+    $('#modalBox').modal('hide');
+    });
+    </script>
+    
+    
+   
+
+
+</body>
+</html>
